@@ -11,35 +11,35 @@ Responds like your future self.
 
 🛠️ Tech Stack
 
-Frontend:
+Frontend:<br>
 
 HTML, CSS, JavaScript
 
-Backend:
+Backend:<br>
 
 Database + auth - Supabase
 
 
-Other Tools:
+Other Tools:<br>
 
 Git & GitHub
-Api - Antropic api 
+Api - Antropic api <br><br>
 
 
-👥 Team / Contributors
-👤 Tusshar Singh 
-👤 Snehadri 
-👤 Prasanta Gorh  
+👥 Team / Contributors<br> <br>
+👤 Tusshar Singh <br>
+👤 Snehadri<br> 
+👤 Prasanta Gorh  <br><br>
 
 
-📈 Future Improvements
-🚀 Improve UI/UX
+📈 Future Improvements<br><br>
+🚀 Improve UI/UX<br>
 🚀 Optimize performance
+<br><br>
 
+🤝 Contributing<br>
 
-🤝 Contributing
-
-Pull requests are welcome!
-For major changes, please open an issue first.
+Pull requests are welcome!<br>
+For major changes, please open an issue first.<br><br>
 
 Author ~ Tusshar Singh
