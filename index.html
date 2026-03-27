@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Second Brain — Talk to Your Future Self</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════
+       LOGIN
+  ══════════════════════════════════════ -->
+  <div id="loginScreen" class="screen active">
+    <div class="login-container">
+      <div class="login-eyebrow">v1.0 · personal intelligence</div>
+      <h1 class="login-wordmark">Second<br><em>Brain</em></h1>
+      <div class="login-divider"></div>
+      <p class="login-tagline">
+        Your future self is watching.<br>Start building it.
+      </p>
+      <div class="login-field-wrap">
+        <i class="fas fa-envelope"></i>
+        <input type="email" id="username" class="input-field" placeholder="your@email.com">
+      </div>
+      <button onclick="startApp()" class="btn-primary">Begin your journey &nbsp;→</button>
+      <p class="login-footer">no filters. no fake motivation. just you.</p>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════
+       DASHBOARD
+  ══════════════════════════════════════ -->
+  <div id="dashboardScreen" class="screen">
+    <nav class="navbar">
+      <div class="nav-brand">
+        <div class="nav-brand-icon"><i class="fas fa-brain"></i></div>
+        <span class="nav-brand-name">Second Brain</span>
+      </div>
+      <div class="nav-menu">
+        <button onclick="showScreen('dashboardScreen')" class="nav-btn active"><i class="fas fa-home"></i><span>Home</span></button>
+        <button onclick="showScreen('logScreen')"       class="nav-btn"><i class="fas fa-pen"></i><span>Log</span></button>
+        <button onclick="showScreen('chatScreen')"      class="nav-btn"><i class="fas fa-comment"></i><span>Future Self</span></button>
+        <button onclick="showScreen('insightsScreen')"  class="nav-btn"><i class="fas fa-chart-line"></i><span>Insights</span></button>
+      </div>
+    </nav>
+
+    <div class="page-content">
+      <div class="page-header">
+        <div class="page-eyebrow">dashboard</div>
+        <h2 class="page-title">Good to see you, <em id="userName">you</em></h2>
+        <p class="page-sub" id="currentDateTime"></p>
+      </div>
+
+      <div class="dash-grid mb-12">
+        <div class="stat-card">
+          <div class="card-label">Streak</div>
+          <div class="stat-value" id="currentStreak">0</div>
+          <div class="stat-label">days logged</div>
+          <span class="stat-tag tag-good">Keep going</span>
+        </div>
+        <div class="stat-card">
+          <div class="card-label">Procrastination</div>
+          <div class="stat-value" id="procrastinationLevel" style="font-size:24px;padding-top:8px">Low</div>
+          <div class="stat-label">this week</div>
+          <span class="stat-tag tag-info" id="procTag">Healthy</span>
+        </div>
+      </div>
+
+      <div class="insight-box">
+        <div class="insight-box-label">today's reflection</div>
+        <p id="dailyInsight">Loading your personalized insight...</p>
+      </div>
+
+      <div class="card pattern-section mt-12">
+        <div class="card-label">weekly patterns</div>
+        <div class="pattern-row">
+          <span class="pattern-name">Productivity</span>
+          <div class="pattern-track"><div class="pattern-fill" style="width:68%;background:var(--green)"></div></div>
+          <span class="pattern-pct">68%</span>
+        </div>
+        <div class="pattern-row">
+          <span class="pattern-name">Distraction</span>
+          <div class="pattern-track"><div class="pattern-fill" style="width:42%;background:var(--amber)"></div></div>
+          <span class="pattern-pct">42%</span>
+        </div>
+        <div class="pattern-row">
+          <span class="pattern-name">Mood</span>
+          <div class="pattern-track"><div class="pattern-fill" style="width:55%;background:var(--accent)"></div></div>
+          <span class="pattern-pct">55%</span>
+        </div>
+        <div class="pattern-row">
+          <span class="pattern-name">Peak time</span>
+          <div class="pattern-track"><div class="pattern-fill" style="width:80%;background:var(--teal)"></div></div>
+          <span class="pattern-pct" id="peakTime">AM</span>
+        </div>
+      </div>
+
+      <div class="quick-actions">
+        <button onclick="showScreen('logScreen')" class="btn-secondary">
+          <i class="fas fa-plus"></i> Quick log
+        </button>
+        <button onclick="showScreen('chatScreen')" class="btn-primary" style="width:auto;margin-top:0;padding:11px 20px;box-shadow:none;display:inline-flex;align-items:center;gap:8px">
+          <i class="fas fa-comment"></i> Talk to future self
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════
+       LOG
+  ══════════════════════════════════════ -->
+  <div id="logScreen" class="screen">
+    <nav class="navbar">
+      <div class="nav-brand">
+        <div class="nav-brand-icon"><i class="fas fa-brain"></i></div>
+        <span class="nav-brand-name">Second Brain</span>
+      </div>
+      <div class="nav-menu">
+        <button onclick="showScreen('dashboardScreen')" class="nav-btn"><i class="fas fa-home"></i><span>Home</span></button>
+        <button onclick="showScreen('logScreen')"       class="nav-btn active"><i class="fas fa-pen"></i><span>Log</span></button>
+        <button onclick="showScreen('chatScreen')"      class="nav-btn"><i class="fas fa-comment"></i><span>Future Self</span></button>
+        <button onclick="showScreen('insightsScreen')"  class="nav-btn"><i class="fas fa-chart-line"></i><span>Insights</span></button>
+      </div>
+    </nav>
+
+    <div class="page-content">
+      <div class="page-header">
+        <div class="page-eyebrow">entry</div>
+        <h2 class="page-title">Log a <em>moment</em></h2>
+        <p class="page-sub">Be honest. Your data source depends on it.</p>
+      </div>
+
+      <div class="log-form-card">
+        <form id="logForm">
+          <div class="form-group">
+            <label class="form-label">Entry type</label>
+            <select id="entryType" class="select-field">
+              <option value="thought">Thought</option>
+              <option value="decision">Decision</option>
+              <option value="mistake">Mistake</option>
+              <option value="win">Win</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">How are you feeling?</label>
+            <div class="mood-selector">
+              <button type="button" class="mood-btn" data-mood="amazing">😊 Amazing</button>
+              <button type="button" class="mood-btn" data-mood="good">🙂 Good</button>
+              <button type="button" class="mood-btn" data-mood="neutral">😐 Neutral</button>
+              <button type="button" class="mood-btn" data-mood="bad">😔 Bad</button>
+              <button type="button" class="mood-btn" data-mood="terrible">😢 Terrible</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">What happened?</label>
+            <textarea id="entryContent" class="textarea-field" placeholder="Don't filter it. Raw honesty becomes real data."></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Save to second brain</button>
+        </form>
+      </div>
+
+      <div class="recent-title">recent entries</div>
+      <div id="recentEntries">
+        <div class="log-entry-item">
+          <div class="entry-dot" style="background:var(--red)"></div>
+          <div style="flex:1">
+            <div class="entry-text">Skipped morning routine. Called it a rest day.</div>
+            <div class="entry-meta">Today · 9:14 AM</div>
+          </div>
+          <span class="entry-type-badge" style="background:rgba(252,165,165,0.1);color:var(--red)">mistake</span>
+        </div>
+        <div class="log-entry-item">
+          <div class="entry-dot" style="background:var(--green)"></div>
+          <div style="flex:1">
+            <div class="entry-text">Finished the backend module 2 hours early.</div>
+            <div class="entry-meta">Today · 2:30 PM</div>
+          </div>
+          <span class="entry-type-badge" style="background:rgba(110,231,183,0.1);color:var(--green)">win</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════
+       CHAT
+  ══════════════════════════════════════ -->
+  <div id="chatScreen" class="screen">
+    <nav class="navbar">
+      <div class="nav-brand">
+        <div class="nav-brand-icon"><i class="fas fa-brain"></i></div>
+        <span class="nav-brand-name">Second Brain</span>
+      </div>
+      <div class="nav-menu">
+        <button onclick="showScreen('dashboardScreen')" class="nav-btn"><i class="fas fa-home"></i><span>Home</span></button>
+        <button onclick="showScreen('logScreen')"       class="nav-btn"><i class="fas fa-pen"></i><span>Log</span></button>
+        <button onclick="showScreen('chatScreen')"      class="nav-btn active"><i class="fas fa-comment"></i><span>Future Self</span></button>
+        <button onclick="showScreen('insightsScreen')"  class="nav-btn"><i class="fas fa-chart-line"></i><span>Insights</span></button>
+      </div>
+    </nav>
+
+    <div class="chat-area">
+      <div class="chat-who">
+        <div class="chat-avatar">FS</div>
+        <div>
+          <div class="chat-who-name">Future Self</div>
+          <div class="chat-who-sub">trained on your logs · always honest</div>
+        </div>
+        <div class="online-pip"></div>
+      </div>
+
+      <div class="chat-messages" id="chatMessages">
+        <div class="msg ai">
+          I'm you — further ahead. I've read everything you've logged.
+          I know your patterns better than you think you do.<br><br>
+          What do you want to ask me?
+        </div>
+      </div>
+
+      <div class="chat-bottom">
+        <div class="chat-input-row">
+          <input type="text" id="chatInput" class="chat-input" placeholder="Ask your future self anything…">
+          <button onclick="sendMessage()" class="send-btn"><i class="fas fa-arrow-up"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════
+       INSIGHTS
+  ══════════════════════════════════════ -->
+  <div id="insightsScreen" class="screen">
+    <nav class="navbar">
+      <div class="nav-brand">
+        <div class="nav-brand-icon"><i class="fas fa-brain"></i></div>
+        <span class="nav-brand-name">Second Brain</span>
+      </div>
+      <div class="nav-menu">
+        <button onclick="showScreen('dashboardScreen')" class="nav-btn"><i class="fas fa-home"></i><span>Home</span></button>
+        <button onclick="showScreen('logScreen')"       class="nav-btn"><i class="fas fa-pen"></i><span>Log</span></button>
+        <button onclick="showScreen('chatScreen')"      class="nav-btn"><i class="fas fa-comment"></i><span>Future Self</span></button>
+        <button onclick="showScreen('insightsScreen')"  class="nav-btn active"><i class="fas fa-chart-line"></i><span>Insights</span></button>
+      </div>
+    </nav>
+
+    <div class="page-content">
+      <div class="page-header">
+        <div class="page-eyebrow">reality check</div>
+        <h2 class="page-title">Your <em>patterns</em></h2>
+        <p class="page-sub">Unfiltered. No fake motivation here.</p>
+      </div>
+
+      <div class="insights-grid">
+        <div class="ins-card wide">
+          <div class="ins-card-title"><i class="fas fa-clock"></i> Activity by hour <span class="severity sev-med">Time patterns</span></div>
+          <div class="ins-card-sub">When you actually do things vs when you think you do</div>
+          <div class="canvas-wrap"><canvas id="timeChart"></canvas></div>
+          <p class="ins-card-sub" id="timeInsight" style="margin:0">You are most productive in the morning hours.</p>
+        </div>
+
+        <div class="ins-card">
+          <div class="ins-card-title"><i class="fas fa-circle-half-stroke"></i> Entry mix</div>
+          <div class="ins-card-sub" id="moodInsight">Wins vs mistakes vs decisions</div>
+          <div class="canvas-wrap"><canvas id="moodChart"></canvas></div>
+        </div>
+
+        <div class="ins-card">
+          <div class="ins-card-title"><i class="fas fa-exclamation-triangle"></i> Avoidance <span class="severity sev-high">Critical</span></div>
+          <div class="ins-card-sub">Where your time disappears</div>
+          <div class="metric-row"><span class="metric-lbl">Task avoidance</span><span class="metric-val" id="avoidanceRate">High</span></div>
+          <div class="metric-row"><span class="metric-lbl">Peak distraction</span><span class="metric-val" id="distractionTime">8–10 PM</span></div>
+          <div class="metric-row"><span class="metric-lbl">Habit break point</span><span class="metric-val" id="habitBreakPoint">Day 3</span></div>
+        </div>
+
+        <div class="ins-card wide">
+          <div class="ins-card-title"><i class="fas fa-trophy"></i> Success signals <span class="severity sev-ok">Positive</span></div>
+          <div class="ins-card-sub">The data that proves you can</div>
+          <div class="big-metrics-row">
+            <div class="big-metric">
+              <div class="big-metric-val" style="color:var(--green)" id="winRate">0%</div>
+              <div class="big-metric-lbl">win rate</div>
+            </div>
+            <div class="big-metric">
+              <div class="big-metric-val" style="color:var(--accent)" id="bestDay">—</div>
+              <div class="big-metric-lbl">best day</div>
+            </div>
+            <div class="big-metric">
+              <div class="big-metric-val" style="color:var(--teal)" id="longestStreak">0</div>
+              <div class="big-metric-lbl">longest streak</div>
+            </div>
+          </div>
+          <div class="insight-quote">
+            "You are most distracted between 9–11 PM. You skip habits on day 3.
+            You work best in the early afternoon. None of this is a character flaw — it's a pattern. And patterns can be changed."
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="scripts.js"></script>
+</body>
+</html>
